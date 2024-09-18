@@ -57,7 +57,7 @@ proxy.on("proxyRes", (proxyRes, req, res) => {
         // Replace 'gis.siriuspower.co.za' with 'localhost:3000' in the response body
         let modifiedBody = bodyText.replace(
           /https:\/\/gis\.siriuspower\.co\.za\/geoserver/g,
-          "https://154.26.134.124:3000/geoserver"
+          "https://geoserver-porxy.onrender.com/geoserver"
         );
         modifiedBody = modifiedBody.replace(
           /geoserver\/openlayers3\/ol\.css/g,
@@ -69,7 +69,7 @@ proxy.on("proxyRes", (proxyRes, req, res) => {
         );
         modifiedBody = modifiedBody.replace(
           /gis\.siriuspower\.co\.za/g,
-          `localhost:3000`
+          `https://geoserver-porxy.onrender.com`
         );
 
         // Set the correct content type for XML/JSON based on the GeoServer response
