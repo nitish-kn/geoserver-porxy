@@ -92,6 +92,8 @@ app.use("/", (req, res) => {
   const password = req.query.password;
   const USERNAME = req.query.USERNAME;
   const PASSWORD = req.query.PASSWORD;
+  console.log(req.path)
+  console.log(req.query)
 
   // Determine if selfHandleResponse should be true or false
   const selfHandleResponse = !!username; // true if lowercase `username` is present, false if `USERNAME` is provided
