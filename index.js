@@ -69,7 +69,7 @@ proxy.on("proxyRes", (proxyRes, req, res) => {
         );
         modifiedBody = modifiedBody.replace(
           /gis\.siriuspower\.co\.za/g,
-          `https://geoserver-porxy.onrender.com`
+          `geoserver-porxy.onrender.com`
         );
 
         // Set the correct content type for XML/JSON based on the GeoServer response
