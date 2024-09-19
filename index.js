@@ -102,7 +102,7 @@ app.use("/", (req, res) => {
     target: "https://gis.siriuspower.co.za",
     selfHandleResponse: selfHandleResponse, // Handle response only for lowercase `username`
     changeOrigin: true, // This ensures the target hostname is used in the request
-    auth: username || req.path.includes("/ows") ? `${username}:${password}` : `${USERNAME}:${PASSWORD}`,
+    auth: `${username}:${password}`,
   });
 });
 
