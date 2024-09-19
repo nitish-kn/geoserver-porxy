@@ -92,8 +92,7 @@ app.use("/", (req, res) => {
   const password = req.query.password || req.query.PASSWORD;
 
   // Determine if selfHandleResponse should be true or false
-  const selfHandleResponse = req.query.format==="application/openlayers"?true:false; // true if lowercase `username` is present, false if `USERNAME` is provided
-  console.log(req.query.format==="application/openlayers", selfHandleResponse)
+  const selfHandleResponse = !!username; // true if lowercase `username` is present, false if `USERNAME` is provided
 
   proxy.web(req, res, {
     target: "https://gis.siriuspower.co.za",
