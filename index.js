@@ -91,8 +91,10 @@ app.use("/", (req, res) => {
   const username = req.query.username || req.query.USERNAME;
   const password = req.query.password || req.query.PASSWORD;
 
+  const user = req.query.username
+
   // Determine if selfHandleResponse should be true or false
-  const selfHandleResponse = !!username; // true if lowercase `username` is present, false if `USERNAME` is provided
+  const selfHandleResponse = !!user; // true if lowercase `username` is present, false if `USERNAME` is provided
 
   proxy.web(req, res, {
     target: "https://gis.siriuspower.co.za",
