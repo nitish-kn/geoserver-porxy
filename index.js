@@ -57,7 +57,7 @@ proxy.on("proxyRes", (proxyRes, req, res) => {
         // Replace 'gis.siriuspower.co.za' with 'localhost:3000' in the response body
         let modifiedBody = bodyText.replace(
           /https:\/\/gis\.siriuspower\.co\.za\/geoserver/g,
-          "https://geoserver-porxy.onrender.com/geoserver"
+          "http://localhost:3000/geoserver"
         );
         modifiedBody = modifiedBody.replace(
           /geoserver\/openlayers3\/ol\.css/g,
@@ -69,7 +69,7 @@ proxy.on("proxyRes", (proxyRes, req, res) => {
         );
         modifiedBody = modifiedBody.replace(
           /gis\.siriuspower\.co\.za/g,
-          `geoserver-porxy.onrender.com`
+          `localhost:3000`
         );
 
         // Set the correct content type for XML/JSON based on the GeoServer response
@@ -91,6 +91,7 @@ app.use("/", (req, res) => {
   const username = req.query.username || req.query.USERNAME;
   const password = req.query.password || req.query.PASSWORD;
 
+  const user = req.query.username
 
   // Determine if selfHandleResponse should be true or false
   const selfHandleResponse = req.query.format==="application/openlayers"; // true if lowercase `username` is present, false if `USERNAME` is provided
