@@ -1,6 +1,7 @@
 const express = require("express");
 const httpProxy = require("http-proxy");
 const zlib = require("zlib"); // For decompression if needed
+var cors = require('cors')
 const app = express();
 const dotenv = require("dotenv");
 // const https = require('https');
@@ -10,7 +11,7 @@ const dotenv = require("dotenv");
 //   key: fs.readFileSync('C:/Users/nitis/localhost.key'),   // Absolute path to localhost.key
 //   cert: fs.readFileSync('C:/Users/nitis/localhost.crt')   // Absolute path to localhost.crt
 // };
-
+app.use(cors())
 dotenv.config();
 const geoserverUrl = process.env.GEOSERVER_URL;
 
