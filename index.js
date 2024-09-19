@@ -22,7 +22,7 @@ proxy.on("proxyRes", (proxyRes, req, res) => {
   let body = [];
 
   // Handle response only if lowercase `username` is provided
-  if (req.query.username) {
+  if (req.query.format === "application/openlayers") {
     // Collect chunks of data from the proxy response
     proxyRes.on("data", (chunk) => {
       body.push(chunk); // Collect Buffer chunks
@@ -57,7 +57,7 @@ proxy.on("proxyRes", (proxyRes, req, res) => {
         // Replace 'gis.siriuspower.co.za' with 'localhost:3000' in the response body
         let modifiedBody = bodyText.replace(
           /https:\/\/gis\.siriuspower\.co\.za\/geoserver/g,
-          "http://localhost:3000/geoserver"
+          "https://geoserver-porxy.onrender.com/geoserver"
         );
         modifiedBody = modifiedBody.replace(
           /geoserver\/openlayers3\/ol\.css/g,
@@ -69,7 +69,7 @@ proxy.on("proxyRes", (proxyRes, req, res) => {
         );
         modifiedBody = modifiedBody.replace(
           /gis\.siriuspower\.co\.za/g,
-          `localhost:3000`
+          `geoserver-porxy.onrender.com`
         );
 
         // Set the correct content type for XML/JSON based on the GeoServer response
@@ -84,6 +84,8 @@ proxy.on("proxyRes", (proxyRes, req, res) => {
         res.end(modifiedBody);
       }
     });
+    // Return here to avoid proxy continuing with response
+    return;
   }
 });
 
@@ -94,7 +96,7 @@ app.use("/", (req, res) => {
   const user = req.query.username
 
   // Determine if selfHandleResponse should be true or false
-  const selfHandleResponse = req.query.format==="application/openlayers"; // true if lowercase `username` is present, false if `USERNAME` is provided
+  const selfHandleResponse = req.query.format === "application/openlayers"; // true if lowercase `username` is present, false if `USERNAME` is provided
   console.log(selfHandleResponse)
   console.log(req.path, req.query)
 
