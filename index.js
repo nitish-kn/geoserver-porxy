@@ -88,15 +88,12 @@ proxy.on("proxyRes", (proxyRes, req, res) => {
 });
 
 app.use("/", (req, res) => {
-  const username = req.query.username;
-  const password = req.query.password;
-  const USERNAME = req.query.USERNAME;
-  const PASSWORD = req.query.PASSWORD;
-  console.log(req.path)
-  console.log(req.query)
+  const username = req.query.username || req.query.USERNAME;
+  const password = req.query.password || req.query.PASSWORD;
 
   // Determine if selfHandleResponse should be true or false
-  const selfHandleResponse = !!username; // true if lowercase `username` is present, false if `USERNAME` is provided
+  const selfHandleResponse = req.query.format==="application/openlayers"?true:false; // true if lowercase `username` is present, false if `USERNAME` is provided
+  console.log(req.query.format==="application/openlayers", selfHandleResponse)
 
   proxy.web(req, res, {
     target: "https://gis.siriuspower.co.za",
