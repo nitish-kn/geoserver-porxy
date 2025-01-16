@@ -57,7 +57,7 @@ proxy.on("proxyRes", (proxyRes, req, res) => {
 
         // Replace 'gis.siriuspower.co.za' with 'localhost:3000' in the response body
         let modifiedBody = bodyText.replace(
-          /https:\/\/gis\.siriuspower\.co\.za\/geoserver/g,
+          /https:\/\/geoserver\.flodataanalytics\.com\/geoserver/g,
           "https://geoserver-porxy.onrender.com/geoserver"
         );
         modifiedBody = modifiedBody.replace(
@@ -69,7 +69,7 @@ proxy.on("proxyRes", (proxyRes, req, res) => {
           `geoserver/openlayers3/ol.js?username=${queryUsername}&password=${queryPassword}`
         );
         modifiedBody = modifiedBody.replace(
-          /gis\.siriuspower\.co\.za/g,
+          /geoserver\.flodataanalytics\.com/g,
           `geoserver-porxy.onrender.com`
         );
 
