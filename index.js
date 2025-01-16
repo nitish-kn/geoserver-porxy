@@ -102,7 +102,7 @@ app.use("/", (req, res) => {
   console.log(req.path, req.query)
 
   proxy.web(req, res, {
-    target: "https://gis.siriuspower.co.za",
+    target: "https://geoserver.flodataanalytics.com",
     selfHandleResponse: selfHandleResponse, // Handle response only for lowercase `username`
     changeOrigin: true, // This ensures the target hostname is used in the request
     auth: `${username}:${password}`,
